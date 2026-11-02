@@ -37,13 +37,22 @@ export class LibroComponent implements OnInit {
     this.cancelar();
   }
 
-
+  editar(l: any) {
+    this.editandoId = l.id;
+    this.libro = { codigo: l.codigo, titulo: l.titulo, autor: l.autor, anio: l.anio };
+  }
 
   cancelar() {
     this.editandoId = null;
     this.limpiar();
   }
 
+  eliminar(id: number) {
+    if (!confirm('¿Eliminar este registro?')) return;
+    this.libros = this.libros.filter(l => l.id !== id);
+    this.persistir();
+    if (this.editandoId === id) this.cancelar();
+  }
 
   validar(): boolean {
     if (!this.libro.codigo.trim() || !this.libro.titulo.trim() || !this.libro.autor.trim()) {
