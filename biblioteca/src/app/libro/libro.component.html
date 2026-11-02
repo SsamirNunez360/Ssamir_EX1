@@ -1,12 +1,15 @@
 <h2>Biblioteca</h2>
 <button (click)="cerrarSesion()">Cerrar sesión</button>
 
-<form>
+<form (ngSubmit)="guardar()">
   <input type="text" [(ngModel)]="libro.codigo" name="codigo" placeholder="Código">
   <input type="text" [(ngModel)]="libro.titulo" name="titulo" placeholder="Título">
   <input type="text" [(ngModel)]="libro.autor" name="autor" placeholder="Autor">
   <input type="number" [(ngModel)]="libro.anio" name="anio" placeholder="Año">
-
+  <button type="submit">{{ editandoId === null ? 'Guardar' : 'Actualizar' }}</button>
+  @if (editandoId !== null) {
+    <button type="button" (click)="cancelar()">Cancelar</button>
+  }
 </form>
 <p style="color:red">{{ error }}</p>
 
