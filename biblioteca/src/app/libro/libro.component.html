@@ -1,2 +1,39 @@
 <h2>Biblioteca</h2>
 <button (click)="cerrarSesion()">Cerrar sesión</button>
+
+<form>
+  <input type="text" [(ngModel)]="libro.codigo" name="codigo" placeholder="Código">
+  <input type="text" [(ngModel)]="libro.titulo" name="titulo" placeholder="Título">
+  <input type="text" [(ngModel)]="libro.autor" name="autor" placeholder="Autor">
+  <input type="number" [(ngModel)]="libro.anio" name="anio" placeholder="Año">
+
+</form>
+<p style="color:red">{{ error }}</p>
+
+<p>Total de libros: {{ libros.length }}</p>
+
+@if (libros.length === 0) {
+  <p>No hay libros registrados.</p>
+} @else {
+  <table border="1">
+    <tr>
+      <th>ID</th>
+      <th>Código</th>
+      <th>Título</th>
+      <th>Autor</th>
+      <th>Año</th>
+      <th>Acciones</th>
+    </tr>
+    @for (l of libros; track l.id) {
+      <tr>
+        <td>{{ l.id }}</td>
+        <td>{{ l.codigo }}</td>
+        <td>{{ l.titulo }}</td>
+        <td>{{ l.autor }}</td>
+        <td>{{ l.anio }}</td>
+        <td>
+        </td>
+      </tr>
+    }
+  </table>
+}
